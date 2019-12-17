@@ -11,6 +11,7 @@ featuredimage: /img/flavor_wheel.jpg
 tags:
   - flavor
   - tasting
+  - health
 ---
 ![flavor wheel](/img/flavor_wheel.jpg)
 
