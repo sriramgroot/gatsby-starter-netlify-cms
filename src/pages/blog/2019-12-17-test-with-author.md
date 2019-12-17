@@ -4,7 +4,7 @@ title: Test with author
 date: 2019-12-17T06:29:26.390Z
 description: testing
 author: Achyuth
-featuredpost: false
+featuredpost: true
 featuredimage: /img/flavor_wheel.jpg
 tags:
   - author
