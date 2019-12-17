@@ -8,6 +8,6 @@ featuredpost: false
 featuredimage: /img/flavor_wheel.jpg
 tags:
   - entries
-  - test
+  - testing
 ---
 Test with author
