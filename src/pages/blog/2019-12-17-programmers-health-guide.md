@@ -13,4 +13,4 @@ tags:
   - health
   - guide
 ---
-Programming can be often stressful, even if you love it. When I am in my zone, I spend many hours in front of computer with little to no movement.
+Programming can be often stressful, even if you love it.
