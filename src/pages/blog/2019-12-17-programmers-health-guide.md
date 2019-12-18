@@ -7,7 +7,7 @@ description: >-
   I spend many hours in front of computer with little to no movement.
 author: Subin
 featuredpost: true
-featuredimage: /img/cafe-2.jpg
+featuredimage: /img/chemex.jpg
 tags:
   - programmers
   - health
