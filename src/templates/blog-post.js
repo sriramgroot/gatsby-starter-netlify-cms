@@ -5,11 +5,14 @@ import Helmet from 'react-helmet'
 import { graphql, Link } from 'gatsby'
 import Layout from '../components/Layout'
 import Content, { HTMLContent } from '../components/Content'
+import { BlogAuthors } from './authors';
+require("prismjs/themes/prism-tomorrow.css")
 
 export const BlogPostTemplate = ({
   content,
   contentComponent,
   description,
+  authors,
   tags,
   title,
   helmet,
@@ -17,28 +20,42 @@ export const BlogPostTemplate = ({
   const PostContent = contentComponent || Content
 
   return (
-    <section className="section">
+    <section className="section singlepost">
       {helmet || ''}
       <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map(tag => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
+        <div className="row justify-content-between">
+          <div className="col-lg-2 leftsidebar">
+            <ul>
+              <li className="single-category">{category}</li>
+              <li className="single-date">{date}</li>
+              <li className="single-tags">
+                {tags && tags.length ? (
+                  <div>
+                    <h4>Tags</h4>
+                    <ul className="taglist">
+                      {tags.map(tag => (
+                        <li key={tag + `tag`}>
+                          <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ) : null}
+              </li>
+            </ul>
+          </div>
+          <div className="col-lg-8">
+            <h1 className="single-title is-size-2 has-text-weight-bold is-bold-light">{title}</h1>
+            <PostContent className="single-description" content={content} />
+          </div>
+          <div className="col-lg-2 rightsidebar">
+            <ul className="single-author">
+              <li><img src={BlogAuthors[author].profileImage} alt={BlogAuthors[author].name}/></li>
+              <li>
+                <h5>{BlogAuthors[author].name}</h5>
+                <p>{BlogAuthors[author].designation}</p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
@@ -74,6 +91,9 @@ const BlogPost = ({ data }) => {
         }
         tags={post.frontmatter.tags}
         title={post.frontmatter.title}
+        author={post.frontmatter.author}
+        category={post.frontmatter.category}
+        date={post.frontmatter.date}
       />
     </Layout>
   )
@@ -95,6 +115,7 @@ export const pageQuery = graphql`
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
+        author
         description
         tags
       }

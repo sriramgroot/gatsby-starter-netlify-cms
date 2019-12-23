@@ -2,23 +2,23 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, graphql, StaticQuery } from 'gatsby'
 import PreviewCompatibleImage from './PreviewCompatibleImage'
+import { BlogAuthors } from '../templates/authors';
 
 class BlogRoll extends React.Component {
   render() {
     const { data } = this.props
     const { edges: posts } = data.allMarkdownRemark
-
     return (
-      <div className="columns is-multiline">
+      <div className="row">
         {posts &&
           posts.map(({ node: post }) => (
-            <div className="is-parent column is-6" key={post.id}>
+            !post.frontmatter.featuredpost ? (<div className={`col-lg-4 post-${post.id}`} key={post.id}>
               <article
-                className={`blog-list-item tile is-child box notification ${
+                className={`blog-list-item row tile is-child ${
                   post.frontmatter.featuredpost ? 'is-featured' : ''
                 }`}
               >
-                <header>
+                <div className="col-lg-12 blogroll-image px-0">
                   {post.frontmatter.featuredimage ? (
                     <div className="featured-thumbnail">
                       <PreviewCompatibleImage
@@ -29,29 +29,25 @@ class BlogRoll extends React.Component {
                       />
                     </div>
                   ) : null}
-                  <p className="post-meta">
-                    <Link
-                      className="title has-text-primary is-size-4"
-                      to={post.fields.slug}
-                    >
-                      {post.frontmatter.title}
-                    </Link>
-                    <span> &bull; </span>
-                    <span className="subtitle is-size-5 is-block">
+                </div>
+                <div className="col-lg-12">
+                  <ul>
+                    <li className="category"><strong>Category: </strong>{post.frontmatter.category}</li>
+                    <li>
+                      <img src={BlogAuthors[post.frontmatter.author].profileImage} alt={BlogAuthors[post.frontmatter.author].name} />
+                    </li>
+                  </ul>
+                  <h3 className="title has-text-primary"><Link to={post.fields.slug}>{post.frontmatter.title}</Link></h3>
+                  <p className="post-description">{post.frontmatter.description}</p>
+                  <div className="row post-meta">
+                    <span className="post-date col-lg-6">
                       {post.frontmatter.date}
                     </span>
-                  </p>
-                </header>
-                <p>
-                  {post.excerpt}
-                  <br />
-                  <br />
-                  <Link className="button" to={post.fields.slug}>
-                    Keep Reading →
-                  </Link>
-                </p>
+                    <Link className="post-link col-lg-6" to={post.fields.slug}>Keep Reading ></Link>
+                  </div>
+                </div>
               </article>
-            </div>
+            </div>) : ""
           ))}
       </div>
     )
@@ -76,7 +72,7 @@ export default () => (
         ) {
           edges {
             node {
-              excerpt(pruneLength: 400)
+              excerpt(pruneLength: 100)
               id
               fields {
                 slug
@@ -84,11 +80,12 @@ export default () => (
               frontmatter {
                 title
                 templateKey
+                description
                 date(formatString: "MMMM DD, YYYY")
                 featuredpost
                 featuredimage {
                   childImageSharp {
-                    fluid(maxWidth: 120, quality: 100) {
+                    fluid(maxWidth: 350, quality: 100) {
                       ...GatsbyImageSharpFluid
                     }
                   }
