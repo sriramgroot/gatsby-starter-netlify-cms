@@ -18,7 +18,7 @@ Having a basic understanding on Linux CLI commands will allow any user to naviga
 
 This post will focus on **[pwd](#pwd)** & **[cd](#cd)** commands.
 
-![shut_up_take_money](/img/part-1-know-your-commands/shut_up_take_money.jpg)
+![shut_up_take_money](/img/shut_up_take_money.jpg)
 
 ## pwd
 

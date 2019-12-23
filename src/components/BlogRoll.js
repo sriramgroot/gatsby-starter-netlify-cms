@@ -79,7 +79,9 @@ export default () => (
               }
               frontmatter {
                 title
+                author
                 templateKey
+                category
                 description
                 date(formatString: "MMMM DD, YYYY")
                 featuredpost
