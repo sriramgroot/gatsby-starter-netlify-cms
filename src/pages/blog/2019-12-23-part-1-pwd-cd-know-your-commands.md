@@ -7,7 +7,7 @@ description: >-
   the `scary green fonts` at least once in your life.
 author: subin
 category: Terminal
-featuredpost: true
+featuredpost: false
 featuredimage: /img/shut_up_take_money.jpg
 tags:
   - Linux
