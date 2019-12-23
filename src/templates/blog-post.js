@@ -12,7 +12,9 @@ export const BlogPostTemplate = ({
   content,
   contentComponent,
   description,
-  authors,
+  author,
+  category,
+  date,
   tags,
   title,
   helmet,
@@ -116,6 +118,7 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         title
         author
+        category
         description
         tags
       }

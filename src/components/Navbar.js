@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
-import github from '../img/github-icon.svg'
-import logo from '../img/logo.svg'
+import { SiteURL } from './Config';
+import logo from '../img/logo.png'
 
 const Navbar = class extends React.Component {
   constructor(props) {
@@ -34,61 +34,25 @@ const Navbar = class extends React.Component {
 
   render() {
     return (
-      <nav
-        className="navbar is-transparent"
-        role="navigation"
-        aria-label="main-navigation"
-      >
-        <div className="container">
-          <div className="navbar-brand">
-            <Link to="/" className="navbar-item" title="Logo">
-              <img src={logo} alt="Kaldi" style={{ width: '88px' }} />
-            </Link>
-            {/* Hamburger menu */}
-            <div
-              className={`navbar-burger burger ${this.state.navBarActiveClass}`}
-              data-target="navMenu"
-              onClick={() => this.toggleHamburger()}
-            >
-              <span />
-              <span />
-              <span />
-            </div>
-          </div>
-          <div
-            id="navMenu"
-            className={`navbar-menu ${this.state.navBarActiveClass}`}
-          >
-            <div className="navbar-start has-text-centered">
-              <Link className="navbar-item" to="/about">
-                About
-              </Link>
-              <Link className="navbar-item" to="/products">
-                Products
-              </Link>
-              <Link className="navbar-item" to="/blog">
-                Blog
-              </Link>
-              <Link className="navbar-item" to="/contact">
-                Contact
-              </Link>
-              <Link className="navbar-item" to="/contact/examples">
-                Form Examples
-              </Link>
-            </div>
-            <div className="navbar-end has-text-centered">
-              <a
-                className="navbar-item"
-                href="https://github.com/netlify-templates/gatsby-starter-netlify-cms"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span className="icon">
-                  <img src={github} alt="Github" />
-                </span>
+      <nav className="st-nav navbar main-nav navigation fixed-top dark-link no-dropdown-transition navbar-sticky" role="navigation" aria-label="main-navigation">
+        <div className="container px-0">
+          <ul className="st-nav-menu nav navbar-nav">
+            <li className="st-nav-section nav-item">
+              <a href={SiteURL} className="navbar-brand">
+                <img src={logo} alt="Grootan Technologies" className="logo logo-sticky" />
               </a>
-            </div>
-          </div>
+            </li>
+            <li className={`st-nav-section st-nav-primary nav-item navbar-menu ${this.state.navBarActiveClass}`}>
+              <a className="st-root-link nav-link" href={SiteURL} target="_blank">Home</a>
+              <a className="st-root-link nav-link" href={SiteURL + "#built-tech"} target="_blank">Services</a>
+              <a className="st-root-link nav-link" href={SiteURL + "#case-studies"} target="_blank">Case Studies</a>
+              <a className="st-root-link nav-link" href={SiteURL + "opensource"} target="_blank">Open Source</a>
+              <Link className="st-root-link nav-link" to="/blog">Blog</Link>
+              <a className="st-root-link nav-link" href={SiteURL + "team"} target="_blank">Team</a>
+              <a className="st-root-link nav-link" href={SiteURL + "careers"} target="_blank">Careers</a>
+              <a className="st-root-link nav-link" href={SiteURL + "contactus"} target="_blank">Contact Us</a>
+            </li>
+          </ul>
         </div>
       </nav>
     )

@@ -1,0 +1,1 @@
+export const SiteURL = "https://www.grootan.com/";

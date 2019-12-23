@@ -1,6 +1,7 @@
 ---
 templateKey: blog-post
 title: Programmers Health Guide
+category: Health
 date: 2019-12-23T06:23:51.448Z
 description: >-
   Programming can be often stressful, even if you love it. When I am in my zone,
